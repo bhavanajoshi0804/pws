@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scal=1.0">
+        <meta http-equiv="X-UA=Compatible" content="ie-edge">
+        <title>NextStep IT solutions</title>
+	
+    </head>
+    <body>
+        <h1> Push notification </h1>
+        <button onclick="subscribe()">Subscribe </button>
+        <script>
+            addEventListener('load', async () => {
+                let sw = await navigator.serviceWorker.register('./sw.js')
+                console.log(sw)
+            })
+            async function subscribe() {
+                let sw = await navigator.serviceWorker.ready;
+                let push = await sw.pushManager.subscribe({
+                    userVisibleOnly:true,
+                    applicationServerKey : 'BMLoo-yViPpi8MYNuyUyFnKYfyaahGShsMQ2gKh-LunYErdzZmSwZ110Cv5JMtoHRB93icaz4m12tricB-MizrI'
+                });
+                console.log(JSON.stringify(push));
+            
+            }
+
+        </script>
+    </body>
+</html>
